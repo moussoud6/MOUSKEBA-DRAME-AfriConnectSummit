@@ -1,0 +1,1280 @@
+
+   /*1. VARIABLES (PILE 8 VARIABLES) & CONFIGURATION GLOBALE */
+:root {
+    --primary-color: #9d4edd;       /* 1. Mauve principal */
+    --primary-hover: #7b2cbf;       /* 2. Mauve foncé pour les survols */
+    --bg-color: #f8fafc;            /* 3. Fond de la page (clair) */
+    --surface-color: #ffffff;       /* 4. Fond des cartes / éléments */
+    --text-color: #0f172a;          /* 5. Couleur du texte principal */
+    --text-muted: #475569;          /* 6. Couleur du texte secondaire */
+    --border-color: #e2e8f0;        /* 7. Couleur des bordures */
+    --overlay-dark: rgba(15, 23, 42, 0.75); /* 8. Overlay sombre  */
+}
+
+/* Base Reset standard */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+   /*2. NAVBAR & REFRESH HEADER*/
+header {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+/* Style du Logo */
+.nav-logo a {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+}
+.nav-logo a i,
+.nav-logo a span {
+    color: var(--primary-color) !important;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+/* Style du bouton Rejoindre dans la navbar */
+.nav-links .nav-btn-mauve {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links .nav-btn-mauve:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-actions button {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Hamburger masqué par défaut sur PC */
+.hamburger {
+    display: none !important;
+}
+ /* 3. PAGE D'ACCUEIL : SECTION HERO */
+.hero-section {
+    min-height: 90vh; /* Réduit un peu la hauteur globale pour remonter le tout */
+    display: flex;
+    align-items: center;
+    padding: 3rem 2rem 3rem 2rem; /* Réduit le padding du haut de 6rem à 3rem pour remonter le contenu */
+    background-color: var(--surface-color);
+    /* Critère obligatoire : animation d'apparition au chargement */
+    animation: apparitionHero 1s ease-out forwards;
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Donne un peu plus d'espace au texte et réduit la colonne de l'image */
+    gap: 3rem;
+    align-items: center;
+    width: 100%;
+}
+
+/* RÈGLE AJOUTÉE : Permet de rétrécir l'image et de la centrer proprement */
+.hero-container img {
+    width: 100%;
+    max-width: 550px;      /* Largeur généreuse comme sur la photo */
+    height: 350px;         /* Hauteur rectangulaire horizontale parfaite */
+    object-fit: cover;     /* Recadre l'image proprement sans la déformer */
+    border-radius: 24px;   /* Grands bords arrondis et modernes comme sur l'image */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Ombre légère pour la décoller du fond */
+    justify-self: center;  /* Centre l'image dans sa colonne */
+}
+.hero-content {
+    text-align: left; /* Aligne strictement le texte à gauche */
+}
+
+.hero-content h1 {
+    font-size: 2.8rem; /* Légèrement réduit pour un meilleur équilibre visuel */
+    color: var(--primary-color); /* Ton titre en mauve */
+    margin-bottom: 0.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* Style du sous-titre obligatoire (Dates & Lieu) */
+.hero-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.hero-subtitle i {
+    color: var(--primary-color);
+}
+
+.hero-subtitle .separator {
+    color: var(--text-muted);
+    margin: 0 0.5rem;
+}
+
+.hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem; /* Réduit pour remonter la suite */
+}
+
+/* Alignement des deux boutons CTA */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.btn-hero {
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+/* Bouton CTA 1 : Mauve plein */
+.btn-mauve-plein {
+    background-color: var(--primary-color);
+    color: #ffffff !important;
+}
+
+.btn-mauve-plein:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Bouton CTA 2 : Transparent avec bordure mauve */
+.btn-mauve-outline {
+    background-color: transparent;
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-mauve-outline:hover {
+    background-color: var(--primary-color);
+    color: #ffffff !important;
+}
+
+/* Zone du compte à rebours */
+.countdown-wrapper {
+    padding: 1.2rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    max-width: 400px;
+}
+
+.countdown-wrapper h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+#countdown {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text-color);
+    letter-spacing: 0.5px;
+}
+
+/* Style de l'image (Colonne droite) */
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+}
+
+/* ANIMATION CSS DEMANDÉE AU CHARGEMENT */
+@keyframes apparitionHero {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+  /* 4. SECTION CHIFFRES CLÉS (CSS GRID RESPONSIVE) */
+.stats-section {
+    max-width: 1200px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    /* Crée 4 colonnes sur PC, et s'adapte tout seul sur mobile */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-card {
+    background-color: var(--surface-color);
+    padding: 2.5rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease;
+    
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: var(--primary-color); 
+    margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+    font-size: 2.8rem;
+    color: var(--text-color);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 1rem;
+}
+  /* 5. SECTION POURQUOI PARTICIPER (FLEXBOX STRUCTURÉ)*/
+.why-section {
+    max-width: 1200px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+}
+
+/* Conteneur Flexbox */
+.why-flex-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* Style de chaque bloc d'argument (icône + titre + description) */
+.why-card {
+    flex: 1; /* Permet aux 3 blocs d'occuper la même largeur de manière égale */
+    background-color: var(--surface-color);
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    
+    /* Animation d'apparition simple et classique */
+    animation: apparitionWhyCard 0.8s ease-out forwards;
+}
+
+.why-icon {
+    font-size: 2.2rem;
+    color: var(--primary-color); 
+    margin-bottom: 1.2rem;
+}
+
+.why-card h3 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.why-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ANIMATION CSS SIMPLE */
+@keyframes apparitionWhyCard {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gestion du responsive pour cette section (les blocs s'empilent sur mobile) */
+@media (max-width: 768px) {
+    .why-flex-container {
+        flex-direction: column;
+    }
+}
+   /*6. SECTION INTERVENANTS VEDETTES (AVEC PAYS ET BOUTONS CTA)*/
+.speakers-section {
+    max-width: 1200px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+}
+
+.speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.speaker-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center;
+}
+
+/* Effet hover CSS demandé sur la carte */
+.speaker-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.speaker-card img {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;
+    object-position: top; 
+}
+.speaker-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.speaker-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+}
+
+.speaker-role {
+    color: var(--primary-color); /* Le titre/rôle de l'intervenant en mauve */
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Style du pays demandé */
+.speaker-country {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Bouton de redirection vers intervenants.html */
+.btn-speaker-more {
+    margin-top: auto; /* Pousse le bouton tout en bas de la carte */
+    padding: 0.6rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    color: var(--primary-color) !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 100%; /* Le bouton prend toute la largeur disponible */
+}
+
+/* Effet hover sur le bouton de redirection */
+.btn-speaker-more:hover {
+    background-color: var(--primary-color);
+    color: #ffffff !important;
+}
+   /*7. SECTION SPONSORS (3 NIVEAUX AVEC ICÔNES & FLEXBOX) */
+.sponsors-section {
+    max-width: 1200px;
+    margin: 6rem auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.sponsors-level {
+    background-color: var(--surface-color);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2.5rem;
+}
+
+.level-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+.level-title.gold { color: #d4af37; }
+.level-title.silver { color: #a6a6a6; }
+.level-title.bronze { color: #cd7f32; }
+
+.sponsors-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+.sponsor-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+/* Effet hover au survol demandé */
+.sponsor-icon-wrapper:hover {
+    opacity: 1;
+    color: var(--primary-color); /* L'icône s'illumine avec ton mauve d'accentuation */
+    transform: translateY(-3px);
+}
+
+.sponsor-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* --- TAILLES DIFFÉRENCIÉES VISUELLEMENT PAR NIVEAU --- */
+
+/* Or : Très grands logos/icônes */
+.level-gold .sponsor-icon-wrapper i {
+    font-size: 3.5rem;
+}
+
+/* Argent : Logos/icônes moyens */
+.level-silver .sponsor-icon-wrapper i {
+    font-size: 2.5rem;
+}
+
+/* Bronze : Petits logos/icônes */
+.level-bronze .sponsor-icon-wrapper i {
+    font-size: 1.8rem;
+}
+
+/* Version Mobile */
+@media (max-width: 768px) {
+    .sponsors-flex { gap: 2.5rem; }
+    .level-gold .sponsor-icon-wrapper i { font-size: 2.8rem; }
+    .level-silver .sponsor-icon-wrapper i { font-size: 2.1rem; }
+    .level-bronze .sponsor-icon-wrapper i { font-size: 1.5rem; }
+}
+   /*10. HERO INTERNE (PROGRAMME.HTML) */
+.internal-hero {
+    width: 100%;
+    background: linear-gradient(135deg, #1e0b36 0%, var(--primary-color) 100%); /* Dégradé basé sur ton mauve */
+    padding: 5rem 2rem;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 4rem;
+}
+
+.hero-internal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.internal-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+/* Fil d'Ariane (Breadcrumb) */
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.breadcrumb a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #ffffff;
+}
+
+.breadcrumb i {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.breadcrumb .current-page {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .internal-hero {
+        padding: 4rem 1.5rem;
+    }
+    .internal-hero h1 {
+        font-size: 2rem;
+    }
+}
+   /*11. STYLE DES ONGLETS ET PLANNINGS EN TABLEAUX (PROGRAMME.HTML) */
+.program-section {
+    max-width: 1200px;
+    margin: 0 auto 6rem auto;
+    padding: 0 2rem;
+}
+
+/* Barre de navigation des onglets */
+.tab-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.tab-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: var(--surface-color);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Style de l'onglet actif */
+.tab-btn.active {
+    background-color: var(--primary-color); /* Ton mauve d'accentuation */
+    color: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(106, 27, 154, 0.2);
+}
+
+/* Gestion de l'affichage des plannings */
+.schedule-table-wrapper {
+    display: none; /* Cache tous les plannings par défaut */
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto; /* Permet le défilement horizontal sur mobile si nécessaire */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Affiche uniquement le planning qui a la classe .active */
+.schedule-table-wrapper.active {
+    display: block;
+}
+
+/* Style général du tableau */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.schedule-table th {
+    background-color: rgba(106, 27, 154, 0.06); /* Léger fond mauve pour l'entête */
+    color: var(--text-color);
+    font-weight: 700;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.schedule-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+/* Colonnes spécifiques */
+.time-col {
+    font-weight: 700;
+    color: var(--primary-color) !important;
+    white-space: nowrap;
+}
+
+.session-title {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* ALTERNANCE DE COULEURS SUR LES LIGNES */
+.schedule-table tbody tr:nth-child(even) {
+    background-color: rgba(106, 27, 154, 0.02); /* Une ligne sur deux reçoit un très léger fond */
+}
+
+.schedule-table tbody tr:hover {
+    background-color: rgba(106, 27, 154, 0.04); /* Effet de survol discret sur la ligne */
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .tab-navigation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .tab-btn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+    .schedule-table th, .schedule-table td {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+   /*12. SECTION THÉMATIQUES (CSS GRID 2X2)*/
+.themes-section {
+    width: 100%;
+    padding: 5rem 2rem;
+    background-color: rgba(255, 255, 255, 0.01); /* Léger contraste de fond */
+}
+
+.themes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.themes-main-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+}
+
+/* La Grille 2x2 demandée */
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes de largeur égale */
+    gap: 2rem; /* Espace entre les cartes */
+}
+
+/* Style des cartes thématiques */
+.theme-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* Style des icônes */
+.theme-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(106, 27, 154, 0.1); /* Fond transparent mauve */
+    color: var(--primary-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.theme-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.theme-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive : Passage en 1 colonne sur tablette et mobile */
+@media (max-width: 768px) {
+    .themes-grid {
+        grid-template-columns: 1fr;
+    }
+    .theme-card {
+        padding: 2rem;
+    }
+}
+  /* 4. PAGE INTERVENANTS (HERO INTERNE, FILTRES & GRILLE RESPONSIVE) */
+/* --- HERO INTERNE --- */
+.internal-hero {
+    background: linear-gradient(135deg, var(--primary-color), #4a148c);
+    color: #ffffff;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-internal-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.breadcrumb a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+    color: #ffffff;
+}
+
+.breadcrumb i {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb .current-page {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* --- FILTRAGE DYNAMIQUE --- */
+.speakers-section {
+    max-width: 1200px;
+    margin: 2rem auto 4rem auto;
+    padding: 0 2rem;
+}
+
+.speakers-section h2 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Correction de la classe pour matcher le HTML (.filter-buttons) */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover,
+.btn-filter.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+/* --- GRILLE D'INTERVENANTS --- */
+
+/* Par défaut (Mobile) : 1 colonne */
+.speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+}
+
+.speaker-card {
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    padding: 1.5rem; /* Ajouté pour espacer le texte proprement sans div superflue */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Ombre initiale discrète */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet Hover imposé : Ombre prononcée + Translation vers le haut */
+.speaker-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Ciblage direct des balises img des cartes */
+.speaker-card img {
+    width: 100%;
+    height: 250px; /* Ou la hauteur que tu as définie */
+    object-fit: cover;
+    object-position: top; 
+}
+
+.speaker-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+}
+
+.speaker-role {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.25rem;
+}
+
+.speaker-country {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.speaker-country i {
+    color: var(--primary-color);
+    margin-right: 4px;
+}
+
+/* --- MEDIA QUERIES (Les structures imposées) --- */
+
+/* Tablette (Largeur minimale 600px) : 2 colonnes */
+@media (min-width: 600px) {
+    .speakers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop (Largeur minimale 992px) : 3 colonnes */
+@media (min-width: 992px) {
+    .speakers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+  /*6. PAGE CONTACT & INSCRIPTION*/
+.contact-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.contact-section h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.info-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.info-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.map-wrapper {
+    margin-bottom: 4rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.form-wrapper, .faq-wrapper {
+    background-color: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.form-wrapper h2, .faq-wrapper h2 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* AJOUT DE input[type="tel"] DANS LA LISTE */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.checkbox-group input {
+    margin-top: 0.3rem;
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.error-message {
+    display: block;
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* CLASSES DE RETOURS VISUELS (Pour ton JavaScript) */
+.form-group.input-error input,
+.form-group.input-error select,
+.form-group.input-error textarea {
+    border-color: #ef4444 !important;
+}
+
+.form-group.input-success input,
+.form-group.input-success select,
+.form-group.input-success textarea {
+    border-color: #22c55e !important;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+}
+
+/* FAQ */
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    overflow: hidden;
+}
+
+.faq-item summary {
+    padding: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.faq-content {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--surface-color);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+  /* 8. FOOTER*/
+.site-footer {
+    background-color: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    padding: 4rem 0 2rem 0;
+    margin-top: 6rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px; /* Force le passage à la ligne sur petit écran */
+}
+
+.footer-column h4 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Petit détail esthétique : barre mauve sous les titres du footer */
+.footer-column h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-color);
+    margin-top: 0.5rem;
+}
+
+.footer-about p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.footer-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-color);
+}
+.footer-logo span {
+    color: var(--primary-color);
+}
+
+/* Liste de liens */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color); /* Devient mauve au survol */
+}
+
+/* Icônes réseaux sociaux */
+.footer-socials {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.footer-socials a {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Copyright tout en bas */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0 auto;
+    padding: 2rem 2rem 0 2rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Responsive Tablette et Mobile */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+}
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--primary-color);
+    color: #ffffff !important;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: none; /* 1. On le cache PAR DÉFAUT ici. C'est le JS qui l'affichera après 300px */
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+}
