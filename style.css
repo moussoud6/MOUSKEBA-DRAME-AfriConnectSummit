@@ -10,7 +10,18 @@
     --border-color: #e2e8f0;        /* 7. Couleur des bordures */
     --overlay-dark: rgba(15, 23, 42, 0.75); /* 8. Overlay sombre  */
 }
+/*VARIABLES POUR LE MODE SOMBRE (Déclenché par le JS)*/
+[data-theme="dark"] {
+    --bg-color: #0f172a;            /* Le fond de la page devient sombre (ancienne couleur de texte) */
+    --surface-color: #1e293b;       /* Les cartes deviennent un gris-bleu sombre très élégant */
+    --text-color: #f8fafc;          /* Le texte principal devient blanc cassé */
+    --text-muted: #94a3b8;          /* Le texte secondaire devient gris clair */
+    --border-color: #334155;        /* Les bordures deviennent sombres et discrètes */
+    
 
+    --primary-color: #b5179e;       
+    --primary-hover: #9d4edd;
+}
 /* Base Reset standard */
 * {
     margin: 0;
