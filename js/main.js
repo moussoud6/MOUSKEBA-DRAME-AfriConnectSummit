@@ -87,3 +87,87 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+// 1. INITIALISATION DES CARTES (Pour éviter qu'elles soient cachées au démarrage)
+const speakerCards = document.querySelectorAll(".speaker-card");
+if (speakerCards.length > 0) {
+    speakerCards.forEach(card => {
+        card.style.opacity = "1";
+        card.style.transform = "scale(1)";
+    });
+}
+
+// 4. ONGLETS DU PROGRAMME (Affichage/masquage  au clic)
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+if (tabButtons.length > 0 && tabContents.length > 0) {
+    tabButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const targetTab = button.getAttribute("data-tab");
+
+            // Retire la classe active partout
+            tabButtons.forEach(btn => btn.classList.remove("active"));
+            tabContents.forEach(content => content.classList.remove("active"));
+
+            // Active l'onglet cliqué
+            button.classList.add("active");
+            const activeContent = document.getElementById(targetTab);
+            if (activeContent) {
+                activeContent.classList.add("active");
+            }
+        });
+    });
+}
+
+// 5. FILTRAGE DYNAMIQUE DES INTERVENANTS
+const filterButtons = document.querySelectorAll(".btn-filter");
+
+if (filterButtons.length > 0 && speakerCards.length > 0) {
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const filterValue = button.getAttribute("data-filter");
+
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            speakerCards.forEach(card => {
+                const cardCategory = card.getAttribute("data-category");
+
+                if (filterValue === "all" || cardCategory === filterValue) {
+                    card.style.display = "block";
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transform = "scale(1)";
+                    }, 50);
+                } else {
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.8)";
+                    setTimeout(() => {
+                        card.style.display = "none";
+                    }, 400);
+                }
+            });
+        });
+    });
+}
+
+// 3. ANIMATIONS AU SCROLL (IntersectionObserver pour fade-in, slide-in, zoom-in)
+const animatedElements = document.querySelectorAll(".animate-fade, .animate-slide, .animate-zoom");
+
+if (animatedElements.length > 0) {
+    const animationObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    animatedElements.forEach(element => {
+        animationObserver.observe(element);
+    });
+}

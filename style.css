@@ -423,10 +423,12 @@ header {
     border-radius: 12px;
     padding: 2.5rem 2rem;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease ;
     display: flex;
     flex-direction: column; /* Aligne les éléments verticalement */
     align-items: center;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 /* Effet hover CSS demandé sur la carte */
@@ -885,7 +887,7 @@ header {
     margin-bottom: 2rem;
 }
 
-/* Correction de la classe pour matcher le HTML (.filter-buttons) */
+/* (.filter-buttons) */
 .filter-buttons {
     display: flex;
     justify-content: center;
@@ -1288,4 +1290,30 @@ header {
     transition: all 0.3s ease;
     z-index: 1000;
     text-decoration: none;
+} 
+
+/* --- États initiaux (cachés) --- */
+.animate-fade {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+
+.animate-slide {
+    opacity: 0;
+    transform: translateY(50px); /* Arrive par le bas */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-zoom {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* --- États actifs --- */
+.animate-fade.visible,
+.animate-slide.visible,
+.animate-zoom.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }

@@ -45,16 +45,16 @@
     
             <!-- Les 3 Onglets de Navigation -->
             <div class="tab-navigation">
-                <button class="tab-btn active" data-target="jour1">Jour 1</button>
-                <button class="tab-btn" data-target="jour2">Jour 2</button>
-                <button class="tab-btn" data-target="jour3">Jour 3</button>
+                <button class="tab-btn active" data-tab="jour1">Jour 1</button>
+                <button class="tab-btn" data-tab="jour2">Jour 2</button>
+                <button class="tab-btn" data-tab="jour3">Jour 3</button>
             </div>
 
             <!-- CONTENU DES PLANNINGS -->
-            <div class="tab-content">
+            <div class="tab-contents-container">
                 
                 <!-- PLANNING JOUR 1 (Visible par défaut avec la classe 'active') -->
-                <div id="jour1" class="schedule-table-wrapper active">
+                <div id="jour1" class="tab-content active schedule-table-wrapper ">
                     <table class="schedule-table">
                         <thead>
                             <tr>
@@ -100,7 +100,7 @@
                 </div>
 
                 <!-- PLANNING JOUR 2 (Caché au départ) -->
-                <div id="jour2" class="schedule-table-wrapper">
+                <div id="jour2" class="tab-content schedule-table-wrapper">
                     <table class="schedule-table">
                         <thead>
                             <tr>
@@ -146,7 +146,7 @@
                 </div>
 
                 <!-- PLANNING JOUR 3 (Caché au départ) -->
-                <div id="jour3" class="schedule-table-wrapper">
+                <div id="jour3" class="tab-content schedule-table-wrapper">
                     <table class="schedule-table">
                         <thead>
                             <tr>
