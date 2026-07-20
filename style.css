@@ -1043,6 +1043,7 @@ header {
 }
 
 .form-group {
+    position: relative;
     margin-bottom: 1.5rem;
 }
 
@@ -1096,21 +1097,28 @@ header {
     color: #ef4444;
     font-size: 0.85rem;
     margin-top: 0.25rem;
+    font-weight: 500;
 }
 
-/* CLASSES DE RETOURS VISUELS (Pour ton JavaScript) */
+/* CLASSES DE RETOURS VISUELS  */
 .form-group.input-error input,
 .form-group.input-error select,
-.form-group.input-error textarea {
+.form-group.input-error textarea,
+input.error, 
+select.error, 
+textarea.error {
     border-color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.05) !important; /* Léger fond rouge */
 }
-
 .form-group.input-success input,
 .form-group.input-success select,
-.form-group.input-success textarea {
+.form-group.input-success textarea,
+input.success, 
+select.success, 
+textarea.success {
     border-color: #22c55e !important;
+    background-color: rgba(34, 197, 94, 0.05) !important; /* Léger fond vert */
 }
-
 .btn-submit {
     width: 100%;
     background-color: var(--primary-color);

@@ -171,3 +171,98 @@ if (animatedElements.length > 0) {
         animationObserver.observe(element);
     });
 }
+
+// MODIFIÉ : "registration-form" au lieu de "contact-form"
+const contactForm = document.getElementById("registration-form");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Empêche l'envoi par défaut pour valider en JS
+        
+        let isValid = true;
+        
+        // MODIFIÉ : Les champs à valider alignés sur ton HTML
+        const name = document.getElementById("fullname"); // "fullname" 
+        const email = document.getElementById("email");
+        const message = document.getElementById("message"); 
+        // Fonction utilitaire pour afficher les erreurs
+        const setError = (element, messageText) => {
+            const inputGroup = element.parentElement;
+            let errorDisplay = inputGroup.querySelector(".error-message");
+            
+            if (!errorDisplay) {
+                errorDisplay = document.createElement("span"); // span pour correspondre à ton HTML
+                errorDisplay.className = "error-message";
+                inputGroup.appendChild(errorDisplay);
+            }
+            
+            errorDisplay.innerText = messageText;
+            element.classList.add("error");
+            element.classList.remove("success");
+            
+            // Ajout optionnel pour colorer aussi le conteneur si ton CSS l'utilise
+            inputGroup.classList.add("input-error");
+            inputGroup.classList.remove("input-success");
+        };
+        
+        // Fonction utilitaire pour valider un champ
+        const setSuccess = (element) => {
+            const inputGroup = element.parentElement;
+            const errorDisplay = inputGroup.querySelector(".error-message");
+            if (errorDisplay) {
+                errorDisplay.innerText = ""; // On vide le texte plutôt que de supprimer le span
+            }
+            element.classList.add("success");
+            element.classList.remove("error");
+            
+            inputGroup.classList.add("input-success");
+            inputGroup.classList.remove("input-error");
+        };
+        
+        // 1. Validation du Nom
+        if (name.value.trim() === "") {
+            setError(name, "Le nom est obligatoire.");
+            isValid = false;
+        } else if (name.value.trim().length < 2) {
+            setError(name, "Le nom doit contenir au moins 2 caractères.");
+            isValid = false;
+        } else {
+            setSuccess(name);
+        }
+        
+        // 2. Validation de l'Email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email.value.trim() === "") {
+            setError(email, "L'adresse email est obligatoire.");
+            isValid = false;
+        } else if (!emailRegex.test(email.value.trim())) {
+            setError(email, "Veuillez entrer une adresse email valide.");
+            isValid = false;
+        } else {
+            setSuccess(email);
+        }
+        
+        // 3. Validation du Message
+        if (message.value.trim() === "") {
+            setError(message, "Le message ne peut pas être vide.");
+            isValid = false;
+        } else if (message.value.trim().length < 20) { // Aligné sur tes 20 car. min du HTML
+            setError(message, "Votre motivation doit faire au moins 20 caractères.");
+            isValid = false;
+        } else {
+            setSuccess(message);
+        }
+        
+        // Si tout est valide
+        if (isValid) {
+            alert("Inscription validée avec succès ! Envoi de votre dossier en cours...");
+            contactForm.reset();
+            
+            // On nettoie les classes après réinitialisation
+            [name, email, message].forEach(el => {
+                el.classList.remove("success");
+                el.parentElement.classList.remove("input-success");
+            });
+        }
+    });
+}
