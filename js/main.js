@@ -266,3 +266,59 @@ if (contactForm) {
         }
     });
 }
+// 1. COMPTE À REBOURS (Target : 15 Octobre 2026)
+const targetDate = new Date("October 15, 2026 09:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        // Ciblage direct des IDs exacts de HTML
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+
+        if (daysEl && hoursEl && minutesEl && secondsEl) {
+            daysEl.innerText = days < 10 ? "0" + days : days;
+            hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+            minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+            secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+    }
+}
+
+// Lancement automatique toutes les secondes
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+
+// 2. ANIMATION DES STATISTIQUES 
+const statNumbers = document.querySelectorAll(".stat-number");
+
+statNumbers.forEach((counter) => {
+    // Récupération de la cible depuis  l'attribut HTML data-target
+    const target = parseInt(counter.getAttribute("data-target"));
+    const isPlus = counter.innerText.includes("+"); // Conserve le "+" pour les participants
+    
+    let count = 0;
+    const speed = Math.ceil(target / 40); // Ajuste la vitesse de l'animation
+
+    const updateCount = () => {
+        count += speed;
+        if (count < target) {
+            counter.innerText = (isPlus ? "+" : "") + count;
+            setTimeout(updateCount, 30);
+        } else {
+            counter.innerText = (isPlus ? "+" : "") + target;
+        }
+    };
+
+    updateCount();
+});
